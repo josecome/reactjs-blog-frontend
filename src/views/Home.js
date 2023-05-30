@@ -1,6 +1,5 @@
 import React from 'react';
-import './App.css';
-import axios from 'axios'
+import axios from 'axios';
 
 function Home() {
   const { useState, useEffect } = React;
@@ -14,7 +13,7 @@ function Home() {
 
   useEffect(() => {
       if(!initialState){
-          axios.get("postlist").then((data) => {      
+          axios.get("http://127.0.0.1:8000/api/postlist").then((data) => {      
               setPost(data?.data);
               console.log(data.data)
               let postids = data.data.map(i => {return i.fields.user})
@@ -34,7 +33,7 @@ function Home() {
       return array.indexOf(value) === index;
   };
   async function loadUserAtrib(ids_of_posts) {
-      await axios.get('/useratrib/', { params: { ids: ids_of_posts } }).then((data) => {
+      await axios.get('http://127.0.0.1:8000/api/useratrib/', { params: { ids: ids_of_posts } }).then((data) => {
          var arr = {};
          let v = data.data.split(';')
          for (var i = 0; i < v.length; i++) {
@@ -51,7 +50,7 @@ function Home() {
 
   async function getData(pg) {
      //setCountPostClick(countPostClick + 1)
-     await axios.get(pg).then((data) => {
+     await axios.get('http://127.0.0.1:8000/api/' + pg).then((data) => {
          var arr = {};
          let v = data.data.split(';')
          for (var i = 0; i < v.length; i++) {
@@ -81,7 +80,7 @@ function Home() {
       }
       const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
       const v = {"post_id": vpost_id, "type_of_like": vtype_of_like, "txt": commenttxt }            
-      await axios.post(link, v, 
+      await axios.post('http://127.0.0.1:8000' + link, v, 
           {
               headers: {
                   'X-CSRFToken': csrftoken
@@ -243,12 +242,12 @@ function Home() {
                                     <tr>
                                         <td>
                                             <label style={ userStylePic2 } className="centerText"><span>{ p.fields.topic }</span></label>
-                                            <div style={ divcommentStyle, container } >
+                                            <div style={ divcommentStyle } >
                                                 <input type="text"                                                 
-                                                    style={ commentStyle, content } 
+                                                    style={ commentStyle } 
                                                     onChange={(e) => { setPostCommenttxt(e.target.value)}}
                                                     placeholder="Write a comment..." />
-                                                    <span style={ commenticons, sidecontent }>
+                                                    <span style={ commenticons }>
                                                         <i className="bi bi-emoji-smile" style={ optionsStyle }></i>
                                                         <i className="bi bi-image" style={ optionsStyle }></i>
                                                         <i className="bi bi-hand-thumbs-up" style={ optionsStyle }></i>

@@ -1,5 +1,9 @@
+@import "bootstrap/dist/css/bootstrap.css";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
 .App {
   text-align: center;
+  background-color: #DEE0E2;
 }
 
 .App-logo {

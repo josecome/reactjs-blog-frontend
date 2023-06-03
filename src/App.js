@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './views/Home';
 import Posts from './views/Posts'
+import Content from './views/Content'
 import About from './views/About';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/posts/:link' element={<Posts />} />
+          <Route path='/content/:link' element={<Content />} />
           <Route path='/About' element={<About />} />
         </Routes>
         <Footer />          

@@ -198,7 +198,7 @@ function Home() {
       all: "unset",
   };
   return (
-          <div>  
+          <div style={ styleUserProfile }>  
                     { post.map(p => ( 
                         <div key={ p.pk } style={ div_content_style }>
                             <table style={ table_of_content_style }>

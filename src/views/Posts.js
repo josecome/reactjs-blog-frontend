@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from "react-router-dom";
 import axios from 'axios';
 
 function Posts() {
@@ -10,10 +11,10 @@ function Posts() {
   const [commenttxt, setPostCommenttxt] = useState('');
   const [initialState, setInitialState] = useState(false)
   //const [countPostClick, setCountPostClick] = useState(0)
-
+  let { link } = useParams();
   useEffect(() => {
       if(!initialState){
-          axios.get("http://127.0.0.1:8000/api/postlist").then((data) => {      
+          axios.get(`http://127.0.0.1:8000/postscontent/${ link }`).then((data) => {      
               setPost(data?.data);
               console.log(data.data)
               let postids = data.data.map(i => {return i.fields.user})
@@ -198,7 +199,8 @@ function Posts() {
       all: "unset",
   };
   return (
-          <div>  
+          <div style={ styleUserProfile }>  
+                    <h1>Posts of User: { link }</h1>
                     { post.map(p => ( 
                         <div key={ p.pk } style={ div_content_style }>
                             <table style={ table_of_content_style }>

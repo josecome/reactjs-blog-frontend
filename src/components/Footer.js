@@ -5,7 +5,7 @@ const Footer = () => {
   const location = useLocation()
   return (
     <div>
-      <p>Copyright &copy; 2022</p>      
+      <p>Copyright &copy; 2023</p>      
       {location.pathname === '/' && (
         <Link to='/about'>About</Link>
       )}      

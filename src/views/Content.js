@@ -4,13 +4,13 @@ import axios from 'axios';
 
 function Content() {
     const { useState, useEffect } = React;
+    let { link } = useParams();
     const [title, setTitle] = useState('Title');
     const [post_content, setPost_content] = useState('Post Content');
     const [initialState, setInitialState] = useState(false);
-    let { link } = useParams();
-
+    
     useEffect(() => {
-        if(!initialState){    
+        if(!initialState){   
             console.log('link: ' + link)        
             axios.get(`http://127.0.0.1:8000/api/post/${ link }`).then((data) => {      
                 var rs_response = data.data[0].fields
@@ -39,7 +39,7 @@ function Content() {
         <div>
             <div style={ styleMainDiv }>
                 <h1 style={ styleBlueColor }>{ title }
-                    <a href="/contents/create_content/{{ page_content.link }}/" 
+                    <a href={ `/create_content/${ link }` }
                         class="bi bi-pencil" 
                         style={ styleLink }
                         title="Edit Content">

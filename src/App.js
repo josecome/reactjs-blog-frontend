@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Home from './views/Home';
 import Posts from './views/Posts'
 import Content from './views/Content'
+import Create_Content from './views/Create_Content'
 import About from './views/About';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/posts/:link' element={<Posts />} />
           <Route path='/content/:link' element={<Content />} />
+          <Route path='/create_content/:link' element={<Create_Content />} />
           <Route path='/About' element={<About />} />
         </Routes>
         <Footer />          
